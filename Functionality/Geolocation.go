@@ -17,19 +17,14 @@ type Geolocation struct {
 	ISP     string  `json:"isp"`        // Internet Service Provider
 }
 
-func getGeolocation(ip string) (*Geolocation, error) {
+func GetGeolocation(ip string) (*Geolocation, error) {
 	//using ip-api.com to obtain public ip of device
 	url := fmt.Sprintf("https://ip-api.com/json/%s", ip)
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
 	}
-	defer func(Body io.ReadCloser) {
-		err := Body.Close()
-		if err != nil {
-
-		}
-	}(resp.Body)
+	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {

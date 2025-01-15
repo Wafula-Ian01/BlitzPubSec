@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func getIP() (string, error) {
+func GetPublicIP() (string, error) {
 	resp, err := http.Get("https://api.ipify.org?format=text")
 	if err != nil {
 		return "", nil
