@@ -25,11 +25,22 @@ func main() {
 	}
 
 	// Step 3: Display the geolocation data
-	fmt.Printf("Geolocation for IP %s:\n", geo.Query)
+	fmt.Printf("Geolocation IP %s:\n", geo.Query)
 	fmt.Printf("Country: %s\n", geo.Country)
 	fmt.Printf("Region: %s\n", geo.Region)
 	fmt.Printf("City: %s\n", geo.City)
 	fmt.Printf("Latitude: %.6f\n", geo.Lat)
 	fmt.Printf("Longitude: %.6f\n", geo.Lon)
 	fmt.Printf("ISP: %s\n", geo.ISP)
+
+	locality, err := Functionality.GetLocation(geo.Lat, geo.Lon)
+	if err != nil {
+		fmt.Println("Error fetching Location:", err)
+		return
+	}
+
+	fmt.Printf("Locality Name: %s\n", locality.Name)
+	fmt.Printf("Full Address: %s\n", locality.Address)
+	fmt.Printf("Structure Type: %s\n", locality.Class)
+	fmt.Printf("Type: %s\n", locality.Type)
 }

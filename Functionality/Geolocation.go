@@ -19,7 +19,7 @@ type Geolocation struct {
 
 func GetGeolocation(ip string) (*Geolocation, error) {
 	//using ip-api.com to obtain public ip of device
-	url := fmt.Sprintf("https://ip-api.com/json/%s", ip)
+	url := fmt.Sprintf("http://ip-api.com/json/%s", ip)
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
