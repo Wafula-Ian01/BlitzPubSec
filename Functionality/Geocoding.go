@@ -24,10 +24,9 @@ type Address struct {
 	Code          string  `json:"country_code"`  // Country Code
 }
 
-func (geo Geolocation) GetLocation(lat, lon float64) (string, error) {
+func (geo Geolocation) GetLocation() (string, error) {
 	//making call to nominatim osm api
-	lat = geo.Lat
-	lon = geo.Lon
+	lat, lon := geo.Lat, geo.Lon
 	url := fmt.Sprintf("https://nominatim.openstreetmap.org/reverse?lat=%f&lon=%f&format=json", lat, lon)
 	resp, err := http.Get(url)
 	if err != nil {

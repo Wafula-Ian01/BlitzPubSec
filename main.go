@@ -33,7 +33,7 @@ func main() {
 	fmt.Printf("Longitude: %.6f\n", geo.Lon)
 	fmt.Printf("ISP: %s\n", geo.ISP)
 
-	locality, err := Functionality.GetLocation(geo.Lat, geo.Lon)
+	locality, err := Functionality.GetLocation()
 	if err != nil {
 		fmt.Println("Error fetching Location:", err)
 		return
