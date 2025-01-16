@@ -33,14 +33,18 @@ func main() {
 	fmt.Printf("Longitude: %.6f\n", geo.Lon)
 	fmt.Printf("ISP: %s\n", geo.ISP)
 
-	locality, err := Functionality.GetLocation(geo.Lat, geo.Lon)
+	locality, address, err := Functionality.GetLocation(geo.Lat, geo.Lon)
 	if err != nil {
 		fmt.Println("Error fetching Location:", err)
 		return
 	}
 
 	fmt.Printf("Locality Name: %s\n", locality.Name)
-	fmt.Printf("Full Address: %s\n", locality.Address)
+	fmt.Printf("Detailed location: %s\n", locality.Address)
 	fmt.Printf("Structure Type: %s\n", locality.Class)
 	fmt.Printf("Type: %s\n", locality.Type)
+	//fmt.Printf("Full Address\n")
+	//fmt.Printf("Full Address: %s %s %s %s\n", address.Road, address.Neighbourhood, address.Village, address.City)
+	//fmt.Printf("Country: %s %s, %s", address.State, address.Country, address.Code)
+
 }

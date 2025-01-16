@@ -24,23 +24,27 @@ type Address struct {
 	Code          string `json:"country_code"`  // Country Code
 }
 
-func GetLocation(lat, lon float64) (*Location, error) {
+func GetLocation(lat, lon float64) (*Location, *Address, error) {
 	//making call to nominatim osm api
 	url := fmt.Sprintf("https://nominatim.openstreetmap.org/reverse?lat=%f&lon=%f&format=json", lat, lon)
 	resp, err := http.Get(url)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	var locality Location
+	var addr Address
+	if err := json.Unmarshal(body, &addr); err != nil {
+		return nil, nil, err
+	}
 	if err := json.Unmarshal(body, &locality); err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return &locality, nil
+	return &locality, &addr, nil
 }
