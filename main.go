@@ -45,6 +45,6 @@ func main() {
 	fmt.Printf("Type: %s\n", locality.Type)
 	//fmt.Printf("Full Address\n")
 	//fmt.Printf("Full Address: %s %s %s %s\n", address.Road, address.Neighbourhood, address.Village, address.City)
-	//fmt.Printf("Country: %s %s, %s", address.State, address.Country, address.Code)
+	fmt.Printf("Country: %s %s, %s", address.State, address.Country, address.Code)
 
 }
