@@ -17,8 +17,19 @@ type Geolocation struct {
 	ISP     string  `json:"isp"`        // Internet Service Provider
 }
 
+// GetGeolocation retrieves geolocation information for a given IP address.
+// It uses the ip-api.com service to fetch the data.
+//
+// Parameters:
+//
+//	ip: A string representing the IP address for which geolocation information is required.
+//
+// Returns:
+//
+//	A pointer to a Geolocation struct containing the retrieved geolocation information.
+//	If an error occurs during the request or data processing, an error is returned.
 func GetGeolocation(ip string) (*Geolocation, error) {
-	//using ip-api.com to obtain public ip of device
+	// Using ip-api.com to obtain public IP of device
 	url := fmt.Sprintf("http://ip-api.com/json/%s", ip)
 	resp, err := http.Get(url)
 	if err != nil {

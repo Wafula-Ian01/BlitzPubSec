@@ -24,6 +24,16 @@ type Address struct {
 	Code          string `json:"country_code"`  // Country Code
 }
 
+/**
+ * GetLocation retrieves the location details from the Nominatim OpenStreetMap API using the provided latitude and longitude coordinates.
+ *
+ * @param lat float64 The latitude coordinate of the location.
+ * @param lon float64 The longitude coordinate of the location.
+ *
+ * @return *Location A pointer to the Location struct containing the address display name, address details, structural type, and type.
+ * @return *Address A pointer to the Address struct containing the street, neighbourhood, village, city, state, country, and country code.
+ * @return error An error if there is an issue with the API call or JSON unmarshalling.
+ */
 func GetLocation(lat, lon float64) (*Location, *Address, error) {
 	//making call to nominatim osm api
 	url := fmt.Sprintf("https://nominatim.openstreetmap.org/reverse?lat=%f&lon=%f&format=json", lat, lon)
