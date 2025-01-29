@@ -1,4 +1,4 @@
-package functionality
+package Functionality
 
 import (
 	"bufio"
@@ -13,7 +13,7 @@ func getOption(r io.Reader, w io.Writer) (string, error) {
 		"To select an option enter it's number below to proceed. Thanks\n"
 	fmt.Fprint(w, msg)
 
-	scanner := bufio.Scanner
+	scanner := bufio.NewScanner(r)
 	scanner.Scan()
 	if err := scanner.Err(); err != nil {
 		return "", err
@@ -22,7 +22,7 @@ func getOption(r io.Reader, w io.Writer) (string, error) {
 	option := scanner.Text()
 
 	if len(option) == 0 {
-		return "", errors.New("You cannot proceed without an option selected!")
+		return "", errors.New("you cannot proceed without an option selected")
 	}
 
 	return "", nil
